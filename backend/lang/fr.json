@@ -1,0 +1,8 @@
+{
+    "The given data was invalid.": "Les données envoyées sont invalides.",
+    "Unauthenticated.": "Non authentifié.",
+    "Forbidden": "Accès interdit.",
+    "Not Found": "Ressource introuvable.",
+    "Too Many Attempts.": "Trop de tentatives. Réessayez plus tard.",
+    "Server Error": "Erreur serveur."
+}

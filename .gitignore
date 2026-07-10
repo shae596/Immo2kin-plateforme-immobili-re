@@ -1,0 +1,53 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE / éditeur (ne pas versionner la config Cursor locale)
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.cursor/
+*.swp
+
+# Env & secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build
+dist/
+build/
+coverage/
+.phpunit.cache/
+.phpunit.result.cache
+
+# Laravel
+backend/storage/*.key
+backend/storage/pail
+backend/public/hot
+backend/public/storage
+backend/bootstrap/cache/*.php
+!backend/bootstrap/cache/.gitignore
+
+# Python
+**/__pycache__/
+**/*.pyc
+ai-service/.venv/
+ai-service/.pytest_cache/
+ai-service/.mypy_cache/
+
+# SQLite (dev fallback)
+backend/database/*.sqlite
+
+# Docker volumes (local)
+infra/docker/data/
