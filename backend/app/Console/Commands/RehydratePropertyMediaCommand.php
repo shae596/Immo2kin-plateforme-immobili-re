@@ -7,6 +7,7 @@ use App\Models\PropertyImage;
 use App\Support\MediaStorage;
 use App\Support\PropertyTitleMatcher;
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 
 class RehydratePropertyMediaCommand extends Command
@@ -75,7 +76,7 @@ class RehydratePropertyMediaCommand extends Command
                     ->where('sort_order', $sortOrder)
                     ->first();
 
-                if ($existing !== null && $disk->exists($existing->path)) {
+                if ($existing !== null && MediaStorage::safeExists($disk, $existing->path)) {
                     $this->line("SKIP (déjà lié) : « {$title} » [{$sortOrder}]");
                     $skipped++;
 
@@ -126,7 +127,7 @@ class RehydratePropertyMediaCommand extends Command
      * Retourne le chemin cloud à enregistrer en base, ou null si introuvable.
      */
     private function resolveCloudPath(
-        \Illuminate\Contracts\Filesystem\Filesystem $disk,
+        Filesystem $disk,
         string $sourcePath,
         int $propertyId,
         string $filename,
@@ -134,24 +135,24 @@ class RehydratePropertyMediaCommand extends Command
         array $entry,
         bool $dryRun,
     ): ?string {
-        if ($disk->exists($sourcePath)) {
-            return $sourcePath;
-        }
+        $sourcePropertyId = (int) ($entry['source_property_id'] ?? 0);
 
-        $targetPath = "properties/{$propertyId}/images/{$filename}";
-
-        if ($disk->exists($targetPath)) {
-            return $targetPath;
+        foreach ($this->cloudPathCandidates($sourcePath, $sourcePropertyId, $propertyId, $filename) as $candidate) {
+            if (MediaStorage::safeExists($disk, $candidate)) {
+                return $candidate;
+            }
         }
 
         $localFile = $bundleRoot.'/'.ltrim(str_replace('\\', '/', $sourcePath), '/');
-        if (! File::isFile($localFile)) {
-            $localFile = $bundleRoot.'/properties/'.($entry['source_property_id'] ?? 0).'/images/'.$filename;
+        if (! File::isFile($localFile) && $sourcePropertyId > 0) {
+            $localFile = $bundleRoot."/properties/{$sourcePropertyId}/images/{$filename}";
         }
 
         if (! File::isFile($localFile)) {
             return null;
         }
+
+        $targetPath = "properties/{$propertyId}/images/{$filename}";
 
         if ($dryRun) {
             return $targetPath;
@@ -160,6 +161,27 @@ class RehydratePropertyMediaCommand extends Command
         $disk->put($targetPath, File::get($localFile), 'public');
 
         return $targetPath;
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function cloudPathCandidates(
+        string $sourcePath,
+        int $sourcePropertyId,
+        int $propertyId,
+        string $filename,
+    ): array {
+        $candidates = [
+            $sourcePath,
+            "properties/{$propertyId}/images/{$filename}",
+        ];
+
+        if ($sourcePropertyId > 0) {
+            $candidates[] = "properties/{$sourcePropertyId}/images/{$filename}";
+        }
+
+        return array_values(array_unique($candidates));
     }
 
     private function resolveDirectory(string $directory): string

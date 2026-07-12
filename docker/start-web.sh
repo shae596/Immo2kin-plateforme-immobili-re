@@ -78,6 +78,20 @@ fi
 
 export DB_CONNECTION="${DB_CONNECTION:-mysql}"
 
+# Cloudflare R2 : path-style=true provoque bucket/bucket dans l'URL et fait planter exists().
+if [ -n "$AWS_ENDPOINT" ]; then
+  case "$AWS_ENDPOINT" in
+    *r2.cloudflarestorage.com*)
+      if [ -n "$AWS_BUCKET" ]; then
+        AWS_ENDPOINT="$(printf '%s' "$AWS_ENDPOINT" | sed "s#/$AWS_BUCKET\$##")"
+        export AWS_ENDPOINT
+      fi
+      export AWS_USE_PATH_STYLE_ENDPOINT=false
+      echo "R2: AWS_USE_PATH_STYLE_ENDPOINT=false (endpoint=${AWS_ENDPOINT})"
+      ;;
+  esac
+fi
+
 # Préférer DB_HOST/DB_* aux URLs (évite « Invalid URI » sur mots de passe spéciaux).
 if [ -n "$DB_HOST" ]; then
   unset DB_URL DATABASE_URL MYSQL_URL MYSQL_PRIVATE_URL

@@ -108,7 +108,7 @@ Les photos doivent être sur un stockage cloud persistant. Voir le guide détail
 | `AWS_BUCKET` | `immo2kin-media` |
 | `AWS_ENDPOINT` | `https://<ACCOUNT_ID>.r2.cloudflarestorage.com` |
 | `AWS_URL` | `https://pub-xxx.r2.dev` |
-| `AWS_USE_PATH_STYLE_ENDPOINT` | `true` |
+| `AWS_USE_PATH_STYLE_ENDPOINT` | `false` |
 
 **Migrer vos images locales :**
 

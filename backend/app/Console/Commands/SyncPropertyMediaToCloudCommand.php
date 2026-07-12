@@ -43,13 +43,13 @@ class SyncPropertyMediaToCloudCommand extends Command
             ->each(function (PropertyImage $image) use ($sourceDisk, $dryRun, &$uploaded, &$skipped): void {
                 $path = $image->path;
 
-                if (MediaStorage::disk()->exists($path)) {
+                if (MediaStorage::safeExists(MediaStorage::disk(), $path)) {
                     $skipped++;
 
                     return;
                 }
 
-                if (! Storage::disk($sourceDisk)->exists($path)) {
+                if (! MediaStorage::safeExists(Storage::disk($sourceDisk), $path)) {
                     $this->warn("Source manquante : {$path}");
                     $skipped++;
 

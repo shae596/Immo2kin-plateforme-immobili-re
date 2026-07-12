@@ -27,7 +27,7 @@ AWS_DEFAULT_REGION=auto
 AWS_BUCKET=immo2kin-media
 AWS_ENDPOINT=https://<ACCOUNT_ID>.r2.cloudflarestorage.com
 AWS_URL=https://pub-<hash>.r2.dev
-AWS_USE_PATH_STYLE_ENDPOINT=true
+AWS_USE_PATH_STYLE_ENDPOINT=false
 ```
 
 Pour **AWS S3** classique : même schéma, sans `AWS_ENDPOINT` ni `use_path_style`, région ex. `eu-west-3`.
