@@ -17,8 +17,21 @@ elif [ -n "$RAILWAY_PUBLIC_DOMAIN" ]; then
   export FRONTEND_URL="${FRONTEND_URL:-https://$RAILWAY_PUBLIC_DOMAIN}"
 fi
 
-# APP_URL avec ${{...}} non résolu ou sans schéma → « Invalid URI: Host is malformed » au boot.
-case "${APP_URL:-}" in
+# Normalise : Railway peut injecter APP_URL = « domaine.app » sans https://
+normalize_url() {
+  case "$1" in
+    http://*|https://*) printf '%s' "$1" ;;
+    *'${{'*|'') printf '%s' "$1" ;;
+    *) printf 'https://%s' "$1" ;;
+  esac
+}
+
+APP_URL="$(normalize_url "${APP_URL:-}")"
+FRONTEND_URL="$(normalize_url "${FRONTEND_URL:-$APP_URL}")"
+export APP_URL FRONTEND_URL
+
+# APP_URL avec ${{...}} non résolu → « Invalid URI: Host is malformed » au boot.
+case "${APP_URL}" in
   *'${{'*|'')
     echo "ERREUR: APP_URL invalide ou non résolu: « ${APP_URL:-<vide>} »"
     echo "Utilisez l'URL complète, ex: https://immo2kin-xxx.up.railway.app"
@@ -30,7 +43,7 @@ esac
 case "$APP_URL" in
   http://*|https://*) ;;
   *)
-    echo "ERREUR: APP_URL doit commencer par http:// ou https:// (actuel: $APP_URL)"
+    echo "ERREUR: APP_URL invalide après normalisation: $APP_URL"
     exit 1
     ;;
 esac
