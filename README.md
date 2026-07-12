@@ -45,7 +45,7 @@ immo-platform/
 
 ## Prérequis
 
-- PHP 8.2+ (mbstring, openssl, pdo_mysql)
+- PHP 8.4+ (mbstring, openssl, pdo_mysql)
 - Composer 2
 - Node.js 20+ et npm
 - Docker Desktop (recommandé pour MySQL / Redis)

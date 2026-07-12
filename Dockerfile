@@ -15,7 +15,7 @@ WORKDIR /app/backend
 COPY backend/composer.json backend/composer.lock ./
 RUN composer install --no-dev --optimize-autoloader --no-scripts --no-interaction
 
-FROM php:8.2-cli-alpine AS runtime
+FROM php:8.4-cli-alpine AS runtime
 
 RUN apk add --no-cache \
     libzip-dev \
