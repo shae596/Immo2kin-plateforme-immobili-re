@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Property;
 use App\Models\PropertyImage;
 use App\Support\MediaStorage;
+use App\Support\PropertyTitleMatcher;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
@@ -44,7 +45,7 @@ class ImportPropertyMediaCommand extends Command
                 continue;
             }
 
-            $property = Property::query()->where('title', $title)->first();
+            $property = PropertyTitleMatcher::findByTitle($title);
             if ($property === null) {
                 $this->warn("Annonce introuvable : « {$title} »");
                 $skipped++;

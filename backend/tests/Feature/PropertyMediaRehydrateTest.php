@@ -28,7 +28,7 @@ class PropertyMediaRehydrateTest extends TestCase
         $owner = User::factory()->create();
         $property = Property::factory()->create([
             'owner_id' => $owner->id,
-            'title' => 'Villa test rehydrate — Gombe',
+            'title' => 'Villa test rehydrate - Gombe',
         ]);
 
         $cloudPath = 'properties/99/images/01-cover.jpg';
