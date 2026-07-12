@@ -73,7 +73,7 @@ Après succès : `false` ou supprimer. Le script seed aussi **automatiquement** 
 - `REDIS_*` — pas de Redis
 - `REVERB_*` — pas de WebSocket en prod
 - `VITE_*` — le React est compilé au build Docker, pas au runtime
-- `SESSION_DOMAIN` — laisser **vide** (ne pas mettre `localhost`)
+- `SESSION_DOMAIN` — **supprimer** si = `localhost` (casse la connexion en prod)
 - `AI_SERVICE_URL` — optionnel (fallback Laravel)
 
 ## Diagnostic healthcheck failed

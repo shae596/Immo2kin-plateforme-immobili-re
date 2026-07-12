@@ -64,8 +64,23 @@ case "$APP_URL" in
 esac
 
 export FRONTEND_URL="${FRONTEND_URL:-$APP_URL}"
-export SANCTUM_STATEFUL_DOMAINS="${SANCTUM_STATEFUL_DOMAINS:-$(echo "$APP_URL" | sed -e 's#^https\?://##' -e 's#/.*$##')}"
-export CORS_ALLOWED_ORIGINS="${CORS_ALLOWED_ORIGINS:-$APP_URL}"
+
+APP_HOST="$(echo "$APP_URL" | sed -e 's#^https\?://##' -e 's#/.*$##')"
+export SANCTUM_STATEFUL_DOMAINS="$APP_HOST"
+export CORS_ALLOWED_ORIGINS="$APP_URL"
+
+# SESSION_DOMAIN=localhost casse la connexion (cookies ignorés sur *.railway.app → CSRF mismatch).
+case "${SESSION_DOMAIN:-}" in
+  ''|localhost|127.0.0.1|.localhost)
+    unset SESSION_DOMAIN
+    ;;
+esac
+
+export SESSION_SECURE_COOKIE="${SESSION_SECURE_COOKIE:-true}"
+export SESSION_SAME_SITE="${SESSION_SAME_SITE:-lax}"
+
+echo "Session cookies: domain=${SESSION_DOMAIN:-<hôte courant>} secure=${SESSION_SECURE_COOKIE}"
+echo "Sanctum stateful domains: ${SANCTUM_STATEFUL_DOMAINS}"
 
 # Variables injectées par le plugin MySQL Railway (si pas encore mappées)
 if [ -n "$MYSQLHOST" ] && [ -z "$DB_HOST" ]; then
