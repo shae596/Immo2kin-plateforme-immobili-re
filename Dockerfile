@@ -41,6 +41,18 @@ RUN cp -r public/spa-build/. public/ && rm -rf public/spa-build
 COPY docker/start-web.sh /app/docker/start-web.sh
 RUN chmod +x /app/docker/start-web.sh
 
+# storage/framework/* est ignoré par .dockerignore — créer la structure requise par Laravel.
+RUN mkdir -p \
+    storage/framework/sessions \
+    storage/framework/views \
+    storage/framework/cache/data \
+    storage/framework/testing \
+    storage/logs \
+    storage/app/public \
+    storage/app/private \
+    bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
+
 RUN php artisan package:discover --ansi || true
 
 ENV APP_ENV=production

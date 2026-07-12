@@ -3,6 +3,21 @@ set -e
 
 cd /app/backend
 
+# .dockerignore exclut storage/framework/* — Laravel exige ces dossiers (vues Blade, cache fichier).
+prepare_filesystem() {
+  mkdir -p \
+    storage/framework/sessions \
+    storage/framework/views \
+    storage/framework/cache/data \
+    storage/framework/testing \
+    storage/logs \
+    storage/app/public \
+    storage/app/private \
+    bootstrap/cache
+  chmod -R 775 storage bootstrap/cache 2>/dev/null || true
+}
+prepare_filesystem
+
 if [ -z "$APP_KEY" ]; then
   echo "ERREUR: définissez APP_KEY dans les variables Railway."
   exit 1
@@ -100,6 +115,7 @@ if [ "$SEED_DATABASE" = "true" ]; then
   php artisan db:seed --force || echo "AVERTISSEMENT: seed échoué (peut être normal si déjà seedé)."
 fi
 
+php artisan optimize:clear 2>/dev/null || true
 php artisan config:cache || echo "AVERTISSEMENT: config:cache ignoré."
 php artisan route:cache || echo "AVERTISSEMENT: route:cache ignoré."
 
