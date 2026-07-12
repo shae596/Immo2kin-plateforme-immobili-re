@@ -8,6 +8,37 @@ if [ -z "$APP_KEY" ]; then
   exit 1
 fi
 
+# Railway fournit souvent RAILWAY_PUBLIC_DOMAIN / RAILWAY_STATIC_URL automatiquement.
+if [ -n "$RAILWAY_STATIC_URL" ]; then
+  export APP_URL="${APP_URL:-$RAILWAY_STATIC_URL}"
+  export FRONTEND_URL="${FRONTEND_URL:-$RAILWAY_STATIC_URL}"
+elif [ -n "$RAILWAY_PUBLIC_DOMAIN" ]; then
+  export APP_URL="${APP_URL:-https://$RAILWAY_PUBLIC_DOMAIN}"
+  export FRONTEND_URL="${FRONTEND_URL:-https://$RAILWAY_PUBLIC_DOMAIN}"
+fi
+
+# APP_URL avec ${{...}} non résolu ou sans schéma → « Invalid URI: Host is malformed » au boot.
+case "${APP_URL:-}" in
+  *'${{'*|'')
+    echo "ERREUR: APP_URL invalide ou non résolu: « ${APP_URL:-<vide>} »"
+    echo "Utilisez l'URL complète, ex: https://immo2kin-xxx.up.railway.app"
+    echo "Ou supprimez APP_URL : Railway peut utiliser RAILWAY_PUBLIC_DOMAIN automatiquement."
+    exit 1
+    ;;
+esac
+
+case "$APP_URL" in
+  http://*|https://*) ;;
+  *)
+    echo "ERREUR: APP_URL doit commencer par http:// ou https:// (actuel: $APP_URL)"
+    exit 1
+    ;;
+esac
+
+export FRONTEND_URL="${FRONTEND_URL:-$APP_URL}"
+export SANCTUM_STATEFUL_DOMAINS="${SANCTUM_STATEFUL_DOMAINS:-$(echo "$APP_URL" | sed -e 's#^https\?://##' -e 's#/.*$##')}"
+export CORS_ALLOWED_ORIGINS="${CORS_ALLOWED_ORIGINS:-$APP_URL}"
+
 # Variables injectées par le plugin MySQL Railway (si pas encore mappées)
 if [ -n "$MYSQLHOST" ] && [ -z "$DB_HOST" ]; then
   export DB_HOST="$MYSQLHOST"
@@ -19,10 +50,9 @@ fi
 
 export DB_CONNECTION="${DB_CONNECTION:-mysql}"
 
-# Préférer DB_HOST/DB_* aux URLs : MYSQL_URL/DATABASE_URL peuvent provoquer
-# « Invalid URI: Host is malformed » si le mot de passe contient des caractères spéciaux.
+# Préférer DB_HOST/DB_* aux URLs (évite « Invalid URI » sur mots de passe spéciaux).
 if [ -n "$DB_HOST" ]; then
-  unset DB_URL
+  unset DB_URL DATABASE_URL MYSQL_URL MYSQL_PRIVATE_URL
 else
   if [ -n "$DATABASE_URL" ]; then
     export DB_URL="$DATABASE_URL"
@@ -34,16 +64,13 @@ else
 fi
 
 echo "=== Démarrage Immo2Kin ==="
+echo "APP_URL=${APP_URL}"
 echo "DB_CONNECTION=${DB_CONNECTION}"
 echo "DB_HOST=${DB_HOST:-<non défini>}"
 echo "DB_DATABASE=${DB_DATABASE:-<non défini>}"
-if [ -n "$DB_URL" ]; then
-  echo "DB_URL=<utilisé (pas de DB_HOST)>"
-fi
 
 if [ -z "$DB_HOST" ] && [ -z "$DB_URL" ]; then
   echo "ERREUR: aucune config MySQL. Référencez le service MySQL (DB_HOST, DB_PORT, etc.)."
-  echo "Voir docs/railway-variables-checklist.md"
   exit 1
 fi
 

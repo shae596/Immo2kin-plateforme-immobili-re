@@ -11,8 +11,8 @@ Remplacez `TON-DOMAINE` par votre URL Railway (ex. `immo2kin-plateforme-immobili
 | `APP_ENV` | `production` |
 | `APP_DEBUG` | `false` |
 | `APP_KEY` | `base64:...` (`php artisan key:generate --show` en local) |
-| `APP_URL` | `https://TON-DOMAINE` |
-| `FRONTEND_URL` | `https://TON-DOMAINE` |
+| `APP_URL` | `https://TON-DOMAINE` (**URL complète**, pas `${{...}}`) |
+| `FRONTEND_URL` | `https://TON-DOMAINE` (identique) |
 | `LOG_CHANNEL` | `stderr` |
 | `LOG_LEVEL` | `info` |
 | `DB_CONNECTION` | `mysql` |
@@ -38,7 +38,11 @@ Remplacez `TON-DOMAINE` par votre URL Railway (ex. `immo2kin-plateforme-immobili
 2. Choisir le service **MySQL** → `MYSQLHOST`, `MYSQLPORT`, `MYSQLDATABASE`, `MYSQLUSER`, `MYSQLPASSWORD`
 3. Mapper vers `DB_HOST`, `DB_PORT`, etc. (voir tableau ci-dessus)
 
-**Important :** n'ajoutez **pas** en même temps `DATABASE_URL`, `MYSQL_URL` ou `DB_URL` si vous utilisez `DB_HOST` + `DB_*`. Une URL MySQL mal formée provoque `Invalid URI: Host is malformed`.
+**Important :** `APP_URL` doit être une URL complète (`https://xxx.up.railway.app`).  
+Si vous mettez `${{RAILWAY_PUBLIC_DOMAIN}}` sans résolution, Laravel plante avec `Invalid URI: Host is malformed`.  
+**Astuce :** supprimez `APP_URL` et laissez Railway utiliser `RAILWAY_PUBLIC_DOMAIN` automatiquement (voir `start-web.sh`).
+
+**Important :** n'ajoutez **pas** en même temps `DATABASE_URL`, `MYSQL_URL` ou `DB_URL` si vous utilisez `DB_HOST` + `DB_*`.
 
 ## Photos R2 (recommandé)
 
