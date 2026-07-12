@@ -70,7 +70,8 @@ class DatabaseSeeder extends Seeder
      */
     private function seedUser(string $email, array $attributes, UserRole $role): void
     {
-        $user = User::query()->updateOrCreate(
+        // firstOrCreate : ne réécrase pas phone/nom si l'utilisateur a déjà modifié son profil.
+        $user = User::query()->firstOrCreate(
             ['email' => $email],
             array_merge($attributes, [
                 'email' => $email,
