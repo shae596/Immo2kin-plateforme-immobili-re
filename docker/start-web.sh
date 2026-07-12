@@ -110,16 +110,46 @@ fi
 
 php artisan storage:link 2>/dev/null || true
 
-if [ "$SEED_DATABASE" = "true" ]; then
-  echo "Seed base de démo…"
-  php artisan db:seed --force || echo "AVERTISSEMENT: seed échoué (peut être normal si déjà seedé)."
+property_count() {
+  php -r "
+    require 'vendor/autoload.php';
+    \$app = require_once 'bootstrap/app.php';
+    \$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+    echo (int) App\Models\Property::query()->count();
+  " 2>/dev/null || echo 0
+}
+
+PROPERTY_COUNT="$(property_count)"
+echo "Annonces en base : ${PROPERTY_COUNT}"
+
+# Seed si base vide (même sans SEED_DATABASE) ou si SEED_DATABASE=true.
+if [ "$PROPERTY_COUNT" = "0" ] || [ "$SEED_DATABASE" = "true" ]; then
+  if [ "$PROPERTY_COUNT" = "0" ]; then
+    echo "Seed base de démo (aucune annonce en base)…"
+  else
+    echo "Seed base de démo (SEED_DATABASE=true)…"
+  fi
+  if ! php artisan db:seed --force; then
+    echo "ERREUR: seed échoué — les annonces et photos ne pourront pas s'afficher."
+    exit 1
+  fi
+  PROPERTY_COUNT="$(property_count)"
+  echo "Annonces après seed : ${PROPERTY_COUNT}"
+fi
+
+if [ "$PROPERTY_COUNT" = "0" ]; then
+  echo "ERREUR: aucune annonce en base après migrations/seed."
+  echo "Vérifiez les logs du seed ou définissez SEED_DATABASE=true puis redéployez."
+  exit 1
 fi
 
 # Photos R2 : rattache les fichiers déjà sur le bucket aux annonces (par titre, via manifest.json).
 if [ "${IMPORT_PROPERTY_MEDIA:-true}" != "false" ] && [ -f /app/deploy/property-media/manifest.json ]; then
   if [ "${MEDIA_DISK:-public}" = "s3" ]; then
-    echo "Rattachement des photos cloud (R2)…"
-    php artisan property-media:rehydrate /app/deploy/property-media || echo "AVERTISSEMENT: rehydrate médias échoué."
+    echo "Rattachement des photos cloud (R2) pour ${PROPERTY_COUNT} annonce(s)…"
+    if ! php artisan property-media:rehydrate /app/deploy/property-media; then
+      echo "AVERTISSEMENT: rehydrate médias échoué."
+    fi
   else
     echo "INFO: MEDIA_DISK≠s3 — import photos ignoré (définissez MEDIA_DISK=s3 + credentials R2)."
   fi

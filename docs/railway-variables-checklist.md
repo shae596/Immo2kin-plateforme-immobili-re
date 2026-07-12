@@ -64,9 +64,9 @@ Après premier succès avec photos visibles : `IMPORT_PROPERTY_MEDIA=false` (opt
 
 | Variable | Valeur |
 |----------|--------|
-| `SEED_DATABASE` | `true` |
+| `SEED_DATABASE` | `true` (optionnel si base vide : le boot seed automatiquement) |
 
-Après succès : `false` ou supprimer.
+Après succès : `false` ou supprimer. Le script seed aussi **automatiquement** si `0` annonce en base.
 
 ## Inutiles sur Railway MVP (peuvent être supprimées)
 
