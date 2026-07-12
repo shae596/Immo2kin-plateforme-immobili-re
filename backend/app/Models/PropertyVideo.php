@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Support\MediaStorage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Storage;
 
 class PropertyVideo extends Model
 {
@@ -23,6 +23,6 @@ class PropertyVideo extends Model
 
     public function url(): string
     {
-        return Storage::disk('public')->url($this->path);
+        return MediaStorage::disk()->url($this->path);
     }
 }

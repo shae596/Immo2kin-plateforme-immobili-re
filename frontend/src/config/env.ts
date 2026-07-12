@@ -9,11 +9,8 @@ function resolveApiOrigin(): string {
   const raw = import.meta.env.VITE_API_URL as string | undefined
 
   if (raw === undefined || raw.trim() === '') {
-    if (import.meta.env.DEV) {
-      return ''
-    }
-
-    return 'http://localhost:8000'
+    // Dev : proxy Vite. Prod (Railway) : même origine, requêtes relatives.
+    return ''
   }
 
   return raw.replace(/\/$/, '')

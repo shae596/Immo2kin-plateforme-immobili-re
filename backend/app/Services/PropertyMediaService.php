@@ -5,8 +5,8 @@ namespace App\Services;
 use App\Models\Property;
 use App\Models\PropertyImage;
 use App\Models\PropertyVideo;
+use App\Support\MediaStorage;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PropertyMediaService
@@ -44,13 +44,13 @@ class PropertyMediaService
 
     public function deleteImage(PropertyImage $image): void
     {
-        Storage::disk('public')->delete($image->path);
+        MediaStorage::disk()->delete($image->path);
         $image->delete();
     }
 
     public function deleteVideo(PropertyVideo $video): void
     {
-        Storage::disk('public')->delete($video->path);
+        MediaStorage::disk()->delete($video->path);
         $video->delete();
     }
 
@@ -74,7 +74,10 @@ class PropertyMediaService
         return $file->storeAs(
             "properties/{$property->id}/{$folder}",
             $filename,
-            'public',
+            [
+                'disk' => MediaStorage::diskName(),
+                'visibility' => 'public',
+            ],
         );
     }
 }

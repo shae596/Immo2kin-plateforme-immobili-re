@@ -1,0 +1,17 @@
+.git
+.cursor
+**/.env
+!**/.env.example
+**/node_modules
+backend/vendor
+backend/storage/app/public/*
+!backend/storage/app/public/.gitignore
+backend/storage/app/private/*
+backend/storage/framework/*
+!backend/storage/framework/.gitignore
+backend/database/*.sqlite
+infra/docker/data
+frontend/dist
+assets
+*.md
+!docs/railway.md

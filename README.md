@@ -154,9 +154,27 @@ Résultat attendu : **74 tests passants**.
 
 ## Documentation
 
+- [Vue d'ensemble du projet](docs/vue-d-ensemble.md) — **grandes lignes, fonctionnement, code**
+- [Vue d'ensemble (PDF)](docs/vue-d-ensemble.pdf) — version imprimable / présentation
 - [Architecture](docs/architecture.md)
 - [API REST](docs/api.md)
 - [Schéma BDD](docs/database.md)
+- [Déploiement Railway](docs/railway.md)
+- [Stockage cloud images](docs/media-storage.md)
+
+## Hébergement Railway (production)
+
+Voir le guide détaillé : **[docs/railway.md](docs/railway.md)**.
+
+Résumé :
+
+1. Connecter le dépôt GitHub à [Railway](https://railway.com)
+2. Ajouter un plugin **MySQL**
+3. Configurer les variables (`APP_KEY`, `APP_URL`, références `${{MySQL.*}}`, `SANCTUM_STATEFUL_DOMAINS`)
+4. Premier déploiement avec `SEED_DATABASE=true` pour les comptes démo
+5. (Optionnel) Second service avec **Root Directory** `ai-service`
+
+L’image Docker racine sert l’API Laravel et le SPA React sur **la même URL** (cookies Sanctum sans CORS complexe).
 
 ## Publier sur GitHub
 
