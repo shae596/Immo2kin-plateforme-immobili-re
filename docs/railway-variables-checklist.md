@@ -34,11 +34,11 @@ Remplacez `TON-DOMAINE` par votre URL Railway (ex. `immo2kin-plateforme-immobili
 
 ### Vérifier que MySQL est bien lié
 
-1. Service web → **Variables** → **Add Variable Reference** (pas copier-coller à la main)
-2. Choisir le service **MySQL** → `MYSQLHOST`, `MYSQLPORT`, etc.
-3. Ou ajouter une seule variable : `DATABASE_URL` = `${{MySQL.MYSQL_URL}}` si disponible
+1. Service web → **Variables** → **Add Variable Reference**
+2. Choisir le service **MySQL** → `MYSQLHOST`, `MYSQLPORT`, `MYSQLDATABASE`, `MYSQLUSER`, `MYSQLPASSWORD`
+3. Mapper vers `DB_HOST`, `DB_PORT`, etc. (voir tableau ci-dessus)
 
-Si `DB_HOST` vaut littéralement `${{MySQL.MYSQLHOST}}` dans les logs, la référence n'est pas résolue → mauvais nom de service.
+**Important :** n'ajoutez **pas** en même temps `DATABASE_URL`, `MYSQL_URL` ou `DB_URL` si vous utilisez `DB_HOST` + `DB_*`. Une URL MySQL mal formée provoque `Invalid URI: Host is malformed`.
 
 ## Photos R2 (recommandé)
 
