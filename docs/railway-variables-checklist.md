@@ -56,6 +56,9 @@ Si vous mettez `${{RAILWAY_PUBLIC_DOMAIN}}` sans résolution, Laravel plante ave
 | `AWS_URL` | `https://pub-xxx.r2.dev` |
 | `AWS_DEFAULT_REGION` | `auto` |
 | `AWS_USE_PATH_STYLE_ENDPOINT` | `true` |
+| `IMPORT_PROPERTY_MEDIA` | `true` (défaut : rattache les photos R2 au boot) |
+
+Après premier succès avec photos visibles : `IMPORT_PROPERTY_MEDIA=false` (optionnel, la commande est idempotente).
 
 ## Premier déploiement seulement
 

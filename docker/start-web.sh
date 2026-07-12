@@ -115,6 +115,16 @@ if [ "$SEED_DATABASE" = "true" ]; then
   php artisan db:seed --force || echo "AVERTISSEMENT: seed échoué (peut être normal si déjà seedé)."
 fi
 
+# Photos R2 : rattache les fichiers déjà sur le bucket aux annonces (par titre, via manifest.json).
+if [ "${IMPORT_PROPERTY_MEDIA:-true}" != "false" ] && [ -f /app/deploy/property-media/manifest.json ]; then
+  if [ "${MEDIA_DISK:-public}" = "s3" ]; then
+    echo "Rattachement des photos cloud (R2)…"
+    php artisan property-media:rehydrate /app/deploy/property-media || echo "AVERTISSEMENT: rehydrate médias échoué."
+  else
+    echo "INFO: MEDIA_DISK≠s3 — import photos ignoré (définissez MEDIA_DISK=s3 + credentials R2)."
+  fi
+fi
+
 php artisan optimize:clear 2>/dev/null || true
 php artisan config:cache || echo "AVERTISSEMENT: config:cache ignoré."
 php artisan route:cache || echo "AVERTISSEMENT: route:cache ignoré."

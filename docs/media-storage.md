@@ -61,7 +61,10 @@ Configurer **R2/S3** sur le service web (`MEDIA_DISK=s3` + variables ci-dessus).
 
 ### Étape 3 — Importer sur Railway
 
-Option A — **Railway CLI** (recommandé) :
+**Automatique (recommandé)** : le déploiement exécute `property-media:rehydrate` au démarrage si `MEDIA_DISK=s3`.  
+Le manifeste `deploy/property-media/manifest.json` (dans le repo) associe chaque photo **déjà présente sur R2** aux annonces seedées (par titre d’annonce).
+
+Option A — **Railway CLI** (import fichier par fichier depuis un export local) :
 
 ```powershell
 # Zipper l'export

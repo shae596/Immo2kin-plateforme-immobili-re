@@ -39,6 +39,7 @@ COPY --from=frontend /app/frontend/dist ./public/spa-build
 RUN cp -r public/spa-build/. public/ && rm -rf public/spa-build
 
 COPY docker/start-web.sh /app/docker/start-web.sh
+COPY deploy/property-media /app/deploy/property-media
 RUN chmod +x /app/docker/start-web.sh
 
 # storage/framework/* est ignoré par .dockerignore — créer la structure requise par Laravel.

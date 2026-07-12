@@ -1,0 +1,387 @@
+{
+    "version": 1,
+    "exported_at": "2026-07-12T16:36:19+00:00",
+    "source_disk": "s3",
+    "properties": [
+        {
+            "property_title": "terrains - Mbudi",
+            "source_property_id": 18,
+            "images": [
+                {
+                    "filename": "01-exterieur.png",
+                    "sort_order": 1,
+                    "source_path": "properties/18/images/01-exterieur.png"
+                },
+                {
+                    "filename": "02-acces.png",
+                    "sort_order": 2,
+                    "source_path": "properties/18/images/02-acces.png"
+                },
+                {
+                    "filename": "03-parcelle.png",
+                    "sort_order": 3,
+                    "source_path": "properties/18/images/03-parcelle.png"
+                }
+            ]
+        },
+        {
+            "property_title": "Appartement moderne — Gombe",
+            "source_property_id": 27,
+            "images": [
+                {
+                    "filename": "62675242-c525-4428-b575-9840ceac1a6f.png",
+                    "sort_order": 1,
+                    "source_path": "properties/9/images/62675242-c525-4428-b575-9840ceac1a6f.png"
+                },
+                {
+                    "filename": "cd4c5355-731f-4038-b3b7-f4912d389750.jpg",
+                    "sort_order": 2,
+                    "source_path": "properties/9/images/cd4c5355-731f-4038-b3b7-f4912d389750.jpg"
+                },
+                {
+                    "filename": "fa6840fe-c66a-41db-9255-79e31f8017e2.jpg",
+                    "sort_order": 5,
+                    "source_path": "properties/10/images/fa6840fe-c66a-41db-9255-79e31f8017e2.jpg"
+                }
+            ]
+        },
+        {
+            "property_title": "Maison familiale — Bandalungwa",
+            "source_property_id": 28,
+            "images": [
+                {
+                    "filename": "6b16a0cb-56a0-45bc-888e-bb87247cfea1.png",
+                    "sort_order": 0,
+                    "source_path": "properties/28/images/6b16a0cb-56a0-45bc-888e-bb87247cfea1.png"
+                }
+            ]
+        },
+        {
+            "property_title": "Studio meublé — Lingwala",
+            "source_property_id": 29,
+            "images": [
+                {
+                    "filename": "357b015a-66d3-459d-9bc3-ca80b1f960cb.png",
+                    "sort_order": 0,
+                    "source_path": "properties/29/images/357b015a-66d3-459d-9bc3-ca80b1f960cb.png"
+                },
+                {
+                    "filename": "af69c216-9453-4a10-83d1-886701dfb4c1.png",
+                    "sort_order": 1,
+                    "source_path": "properties/29/images/af69c216-9453-4a10-83d1-886701dfb4c1.png"
+                },
+                {
+                    "filename": "c6421d68-137a-48a0-820a-97e20bd50952.png",
+                    "sort_order": 2,
+                    "source_path": "properties/29/images/c6421d68-137a-48a0-820a-97e20bd50952.png"
+                }
+            ]
+        },
+        {
+            "property_title": "Bureau commercial — Gombe",
+            "source_property_id": 30,
+            "images": [
+                {
+                    "filename": "00ce291a-76d9-4312-af6d-60c82cfaa498.png",
+                    "sort_order": 0,
+                    "source_path": "properties/30/images/00ce291a-76d9-4312-af6d-60c82cfaa498.png"
+                },
+                {
+                    "filename": "8f377315-0727-418f-ad32-fad93527c29b.png",
+                    "sort_order": 1,
+                    "source_path": "properties/30/images/8f377315-0727-418f-ad32-fad93527c29b.png"
+                },
+                {
+                    "filename": "ccd7a264-01a7-446a-b1b0-06172df0eb9f.png",
+                    "sort_order": 2,
+                    "source_path": "properties/30/images/ccd7a264-01a7-446a-b1b0-06172df0eb9f.png"
+                }
+            ]
+        },
+        {
+            "property_title": "Villa à vendre — Ngaliema",
+            "source_property_id": 31,
+            "images": [
+                {
+                    "filename": "0d76083e-61a2-4630-a9c2-15b160a5ddda.png",
+                    "sort_order": 0,
+                    "source_path": "properties/31/images/0d76083e-61a2-4630-a9c2-15b160a5ddda.png"
+                },
+                {
+                    "filename": "97c63e72-e96c-4507-bf46-50a9c566149b.jpg",
+                    "sort_order": 1,
+                    "source_path": "properties/31/images/97c63e72-e96c-4507-bf46-50a9c566149b.jpg"
+                },
+                {
+                    "filename": "72480fd7-78a1-47cc-9610-a4a7235513a1.jpg",
+                    "sort_order": 2,
+                    "source_path": "properties/31/images/72480fd7-78a1-47cc-9610-a4a7235513a1.jpg"
+                }
+            ]
+        },
+        {
+            "property_title": "Appartement 2 chambres — Limete",
+            "source_property_id": 32,
+            "images": [
+                {
+                    "filename": "808622d8-390a-4947-be25-e312c33ef8b5.png",
+                    "sort_order": 1,
+                    "source_path": "properties/32/images/808622d8-390a-4947-be25-e312c33ef8b5.png"
+                },
+                {
+                    "filename": "72de08b2-6c10-4d7f-9d1a-6aad23390f3b.png",
+                    "sort_order": 1,
+                    "source_path": "properties/32/images/72de08b2-6c10-4d7f-9d1a-6aad23390f3b.png"
+                },
+                {
+                    "filename": "82d0c1ab-f8de-4f50-a533-0dbabea1089e.png",
+                    "sort_order": 2,
+                    "source_path": "properties/32/images/82d0c1ab-f8de-4f50-a533-0dbabea1089e.png"
+                }
+            ]
+        },
+        {
+            "property_title": "Maison avec jardin — Kalamu",
+            "source_property_id": 33,
+            "images": [
+                {
+                    "filename": "4d6117d7-fb51-41e6-811f-5699799fecab.jpg",
+                    "sort_order": 0,
+                    "source_path": "properties/33/images/4d6117d7-fb51-41e6-811f-5699799fecab.jpg"
+                },
+                {
+                    "filename": "2b606321-774a-4175-96cb-240c42c7ed61.jpg",
+                    "sort_order": 1,
+                    "source_path": "properties/33/images/2b606321-774a-4175-96cb-240c42c7ed61.jpg"
+                },
+                {
+                    "filename": "6b8aecf0-bd94-4856-9aa3-b8c6007137a3.jpg",
+                    "sort_order": 2,
+                    "source_path": "properties/33/images/6b8aecf0-bd94-4856-9aa3-b8c6007137a3.jpg"
+                }
+            ]
+        },
+        {
+            "property_title": "Local commercial — Gombe",
+            "source_property_id": 34,
+            "images": [
+                {
+                    "filename": "adaea7e1-6360-47c8-885b-af8554af6a3e.png",
+                    "sort_order": 0,
+                    "source_path": "properties/34/images/adaea7e1-6360-47c8-885b-af8554af6a3e.png"
+                },
+                {
+                    "filename": "1c35e77d-9c94-4fe3-aba4-340513bc8d01.png",
+                    "sort_order": 1,
+                    "source_path": "properties/34/images/1c35e77d-9c94-4fe3-aba4-340513bc8d01.png"
+                },
+                {
+                    "filename": "c1d60e63-05a0-4911-8ed5-e025d3f40be1.png",
+                    "sort_order": 2,
+                    "source_path": "properties/34/images/c1d60e63-05a0-4911-8ed5-e025d3f40be1.png"
+                }
+            ]
+        },
+        {
+            "property_title": "Terrain constructible — Matete",
+            "source_property_id": 35,
+            "images": [
+                {
+                    "filename": "01-exterieur.png",
+                    "sort_order": 1,
+                    "source_path": "properties/35/images/01-exterieur.png"
+                },
+                {
+                    "filename": "02-acces.png",
+                    "sort_order": 2,
+                    "source_path": "properties/35/images/02-acces.png"
+                },
+                {
+                    "filename": "03-parcelle.png",
+                    "sort_order": 3,
+                    "source_path": "properties/35/images/03-parcelle.png"
+                }
+            ]
+        },
+        {
+            "property_title": "Maison familiale à louer — Masina",
+            "source_property_id": 36,
+            "images": [
+                {
+                    "filename": "a2ebd4f8-c59d-442f-a2fd-e0209e11ac7d.jpg",
+                    "sort_order": 0,
+                    "source_path": "properties/36/images/a2ebd4f8-c59d-442f-a2fd-e0209e11ac7d.jpg"
+                },
+                {
+                    "filename": "629abd0b-500c-4b19-a379-c3273f99d560.jpg",
+                    "sort_order": 1,
+                    "source_path": "properties/36/images/629abd0b-500c-4b19-a379-c3273f99d560.jpg"
+                },
+                {
+                    "filename": "b1e5a134-8961-41c8-918c-086eb4cbabe3.jpg",
+                    "sort_order": 2,
+                    "source_path": "properties/36/images/b1e5a134-8961-41c8-918c-086eb4cbabe3.jpg"
+                }
+            ]
+        },
+        {
+            "property_title": "Maison à vendre — Mont Ngafula",
+            "source_property_id": 37,
+            "images": [
+                {
+                    "filename": "1521287a-c35f-40e3-ad94-2d27ece52646.jpg",
+                    "sort_order": 0,
+                    "source_path": "properties/37/images/1521287a-c35f-40e3-ad94-2d27ece52646.jpg"
+                }
+            ]
+        },
+        {
+            "property_title": "Appartement 3 chambres — Kimbanseke",
+            "source_property_id": 38,
+            "images": [
+                {
+                    "filename": "012e5ca8-0b63-47bd-bc85-3ea4fb15dfe1.jpg",
+                    "sort_order": 0,
+                    "source_path": "properties/38/images/012e5ca8-0b63-47bd-bc85-3ea4fb15dfe1.jpg"
+                }
+            ]
+        },
+        {
+            "property_title": "Studio meublé — Barumbu",
+            "source_property_id": 39,
+            "images": [
+                {
+                    "filename": "4974e392-07fe-423c-af4a-0efa4fe90f69.jpg",
+                    "sort_order": 0,
+                    "source_path": "properties/39/images/4974e392-07fe-423c-af4a-0efa4fe90f69.jpg"
+                }
+            ]
+        },
+        {
+            "property_title": "Villa avec jardin — Selembao",
+            "source_property_id": 40,
+            "images": [
+                {
+                    "filename": "01-exterieur.png",
+                    "sort_order": 1,
+                    "source_path": "properties/40/images/01-exterieur.png"
+                },
+                {
+                    "filename": "02-salon.png",
+                    "sort_order": 2,
+                    "source_path": "properties/40/images/02-salon.png"
+                },
+                {
+                    "filename": "03-chambre.png",
+                    "sort_order": 3,
+                    "source_path": "properties/40/images/03-chambre.png"
+                }
+            ]
+        },
+        {
+            "property_title": "Bureau open space — Makala",
+            "source_property_id": 41,
+            "images": [
+                {
+                    "filename": "01-exterieur.png",
+                    "sort_order": 1,
+                    "source_path": "properties/41/images/01-exterieur.png"
+                },
+                {
+                    "filename": "02-open-space.png",
+                    "sort_order": 2,
+                    "source_path": "properties/41/images/02-open-space.png"
+                },
+                {
+                    "filename": "03-salle-reunion.png",
+                    "sort_order": 3,
+                    "source_path": "properties/41/images/03-salle-reunion.png"
+                }
+            ]
+        },
+        {
+            "property_title": "Local commercial — Ndjili",
+            "source_property_id": 42,
+            "images": [
+                {
+                    "filename": "01-exterieur.png",
+                    "sort_order": 1,
+                    "source_path": "properties/42/images/01-exterieur.png"
+                },
+                {
+                    "filename": "02-salle.png",
+                    "sort_order": 2,
+                    "source_path": "properties/42/images/02-salle.png"
+                },
+                {
+                    "filename": "03-reserve.png",
+                    "sort_order": 3,
+                    "source_path": "properties/42/images/03-reserve.png"
+                }
+            ]
+        },
+        {
+            "property_title": "Parcelle viabilisée — Kisenso",
+            "source_property_id": 43,
+            "images": [
+                {
+                    "filename": "01-exterieur.png",
+                    "sort_order": 1,
+                    "source_path": "properties/43/images/01-exterieur.png"
+                },
+                {
+                    "filename": "02-viabilisation.png",
+                    "sort_order": 2,
+                    "source_path": "properties/43/images/02-viabilisation.png"
+                },
+                {
+                    "filename": "03-acces.png",
+                    "sort_order": 3,
+                    "source_path": "properties/43/images/03-acces.png"
+                }
+            ]
+        },
+        {
+            "property_title": "Appartement neuf à vendre — Bumbu",
+            "source_property_id": 44,
+            "images": [
+                {
+                    "filename": "01-exterieur.png",
+                    "sort_order": 1,
+                    "source_path": "properties/44/images/01-exterieur.png"
+                },
+                {
+                    "filename": "02-salon.png",
+                    "sort_order": 2,
+                    "source_path": "properties/44/images/02-salon.png"
+                },
+                {
+                    "filename": "03-chambre.png",
+                    "sort_order": 3,
+                    "source_path": "properties/44/images/03-chambre.png"
+                }
+            ]
+        },
+        {
+            "property_title": "Appartement nouvellement construit - Lingwala",
+            "source_property_id": 45,
+            "images": [
+                {
+                    "filename": "eba5cbb4-b5c1-410d-afc7-08b893750f3e.jpg",
+                    "sort_order": 0,
+                    "source_path": "properties/45/images/eba5cbb4-b5c1-410d-afc7-08b893750f3e.jpg"
+                },
+                {
+                    "filename": "5d36baf9-fae0-4564-b3c5-973980636621.jpg",
+                    "sort_order": 1,
+                    "source_path": "properties/45/images/5d36baf9-fae0-4564-b3c5-973980636621.jpg"
+                },
+                {
+                    "filename": "4ce2819b-27a4-4ca0-9d0e-85d914546baf.jpg",
+                    "sort_order": 2,
+                    "source_path": "properties/45/images/4ce2819b-27a4-4ca0-9d0e-85d914546baf.jpg"
+                }
+            ]
+        }
+    ]
+}
